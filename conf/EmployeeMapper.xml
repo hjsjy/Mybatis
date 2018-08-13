@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hj.mybatis.bean.EmployeeMapper">
+
+    <!--#{id} 从传递过来的参数中取出id值-->
+    <select id="getEmpByIdAndLastNam" resultType="employee">
+        select * from tbl_employee where id = #{id} and last_name=#{lastName}
+    </select>
+    <select id="getEmpById" >
+        select * from tbl_employee where id = #{id}
+    </select>
+    <select id="getMap" resultType="employee">
+        select * from tbl_employee where id = #{id} and last_name=#{lastName}
+    </select>
+    <select id="getLsitMapByLastName" resultType="employee">
+        select * from tbl_employee where last_name like #{lastName}
+    </select>
+    <select id="getMapById" resultType="map">
+        select * from tbl_employee where id =#{id}
+    </select>
+    <select id="getMapByLastNameReturnMap" resultType="employee">
+        select * from tbl_employee where last_name like #{lastName}
+    </select>
+    <!--     public void addEmp(Employee employee);
+--><insert id="addEmp" parameterType="com.hj.mybatis.service.Employee" useGeneratedKeys="true" keyProperty="id">
+      insert into  tbl_employee(last_name, gender, email) values (#{lastName},#{gender},#{email})
+</insert>
+
+    <!--update-->
+    <update id="updateEmp">
+      update tbl_employee set last_name=#{lastName},gender=#{gender},email=#{email} where id=#{id}
+    </update>
+    <!--deleteById-->
+    <delete id="deleteEmp">
+        delete from tbl_employee where  id=#{id}
+    </delete>
+</mapper>

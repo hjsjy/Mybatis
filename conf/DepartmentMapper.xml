@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hj.mybatis.bean.DepartmentMapper">
+    <!--public class Department {
+     private Integer id;
+     private String departmentName;
+     private List<Employee>  emps;-->
+    <!---->
+    <resultMap id="MyDept"   type="com.hj.mybatis.service.Department">
+        <id column="did" property="id"/>
+        <result column="dept_name" property="departmentName"/>
+        <!-- 定义关联的COLLECTION类型属性的封装规则-->
+        <collection property="emps" ofType="employee">
+            <!--定义集合中元素的封装规则 -->
+            <id column="eid" property="id"/>
+            <result column="lastName" property="LastName"/>
+            <result column="email" property="email"/>
+            <result column="gender" property="gender"/>
+        </collection>
+    </resultMap>
+    <select id="getDeptByIdPlus" resultMap="MyDept" >
+        SELECT d.id did,d.dept_name,e.id eid, e.last_name lastName,e.email email,e.
+                gender gender FROM tbl_dept d LEFT JOIN tbl_employee e ON d.id=e.d_id WHERE d.id=#{id};
+    </select>
+</mapper>
