@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!--我做了一次修改-->
 <mapper namespace="com.hj.mybatis.bean.DepartmentMapper">
     <!--public class Department {
      private Integer id;
